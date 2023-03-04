@@ -1,0 +1,83 @@
+Table des  matières:
+1.Modification maquette fournie
+2.Classes/Interfaces ajoutées 
+3.Comportements des composants introduits
+
+Les classes et les interfaces seront indiquées comme ceci: {Classes}; {Interfaces}
+
+Les extensions seront ajoutées entre parenthèse avec les classes/interfaces : {Classe (extension)}
+
+-----1-----
+/SuperPacman - Ghost 3.0/java/ch/epfl/cs107/play/game/areagame/Area.java
+
+Ajout d’une méthode shortestPath(DiscreteCoordinates ghost, DiscreteCoordinates superPacman)
+ Permet d’accéder au Graph de {SuperPacmanBehavior} depuis {SuperPacmanPlayer} pour déterminer le chemin le plus court
+
+
+Ajout d’une classe {CollectableAreaEntity} dans la package ch.epfl.cs107.play.game.areagame.actor
+Afin de créer des objets qui disparaissent lorsque l’on marche dessus
+
+
+
+
+-----2------
+Pour cette partie nous décrirons les packages créés, puis les classes ajoutées à ces packages en dessous, avec une petite explication si nécessaire.
+
+Création package ch.epfl.cs107.play.game.superpacman
+{SuperPacman} (afin d’initialiser et lancer le jeu SuperPacman)
+
+
+Création package ch.epfl.cs107.play.game.superpacman.actor: (ce package regroupe tous les acteurs du jeu : interactor et interactable; ainsi que toutes les spécificités de chaque acteurs (interactions, graphisme etc))
+	Les acteurs peuvent être soit un Interactable (modéliser toute entité réceptive à une demande d’interaction) ou bien un Interactor (modéliser toute entité pouvant interagir avec une Interactable): 
+
+Acteurs Interactor et Interactable: 
+
+	-{SuperPacmanPlayer} (initialisation du joueur: joueur principal du jeu qui possède des interactions de contact et où on définit les spécifications/attributs du joueur (vitesse, déplacement etc)
+	classe dans {SuperPacmanPlayer} : {SuperPacmanPlayerHandler} (implémente {SuperPacmanInteractionVisitor} pour permettre les interactions entre tous les acteurs du jeu)
+
+
+	-{SuperPacmanStatusGUI} (Implémente {Graphics} pour les graphismes de l'affichage du score et du niveau de vie du joueur lors du jeu : initialisation de l’interface des scores, etc…)
+	-{SuperPacmanCollectable (CollectableAreaEntity)} (collections d’objets pour SuperPacman et permet les interactions)
+
+
+
+	-{Ghost (MovableAreaEntity)} (initialisation de la classe abstraite Ghost qui permettra de créer les différents fantômes)
+	-{Blinky (Ghost)} (initialisation du fantôme Blinky: fantôme de base qui possède un mouvement aléatoire et possède une interaction avec le superPacmanPlayer)
+	-{Inky (Ghost)} (initialisation du fantôme Inky: fantôme intelligent qui se déplace autour de son refuge, et possède des interactions de distance avec le )
+	-{Pinky (Ghost)} (initialisation du fantôme Pinky: fantôme intelligent qui suit le PacmanPlayer et lorsqu'il est effrayé  )
+
+
+Interactable : (modéliser toute entité réceptive à une demande d’interaction)
+Chaque acteur possède une fonctionnalité spécifique suivant le 
+
+{Wall (AreaEntity)} (création des murs dans le jeux, méthode fournie dans la maquette : interaction de contact avec le superPacmanPlayer pour définir l'aire de jeu)
+{Gate (AreaEntity)} (initialisation des gate pour les différents level: interaction à distance et signal (intensité)
+{Diamond (SuperPacmanCollectable)} (initialisation des diamants et interactions de contact avec le superPacmanPlayer)
+{Cherry (SuperPacmanCollectable)} (initialisation des Cherry et interactions (peut être collecté par l'acteur SuperPacmanPlayer) de contact avec l'actor)
+{Bonus (SuperPacmanCollectable)} (initialisation des Bonus : spécificité = rendre effrayer les fantômes et SuperPacman devient invisible )
+{Key (SuperPacmanCollectable)} (initialisation des Key : spécificité = peut ouvrir des Gate quand collectée)
+
+
+
+Création du package ch.epfl.cs107.play.game.superpacman.area: (ce package regroupe l'ensemble des aires du jeu (ici les levels) ainsi que les comportements de ces aires (behavior))  
+{SuperPacmanArea (Area)} (initialisation de l’Area spécifique à SuperPacman)
+{SuperPacmanBehavior (AreaBehavior)} (initialisation de l’AreaBehavior spécifique à SuperPacman)
+{Level0 (SuperPacmanArea)} (initialisation du level 0: contient les acteurs (door,  diamonds, cherry, bonus, key, gate)
+{Level1 (SuperPacmanArea)} (initialisation du level 1: contient les acteurs (door,  diamonds, cherry, bonus, key, gate))
+{Level2 (SuperPacmanArea)} (initialisation du level 2: contient les acteurs (door,  diamonds, cherry, bonus, key, gate))
+
+
+Création du package ch.epfl.cs107.play.game.superpacman.handler
+{SuperPacmanEndGame} (initialisation du screen de fin de game qui affiche Game Over)
+{SuperPacmanInteractionVisitor (RPGInteractionVisitor)} (initialisation de l’interface qui introduira les interactions spécifiques à SuperPacman)
+{SuperPacmanPause (Graphics)} (initialisation de menu de pause)
+
+-----3------
+-Un screen qui affiche GameOver lorsque l'on a plus de vie
+
+-Une possibilité de mettre le jeu en pause
+
+-Changement de la couleur des mur, taille de la vue, etc...
+
+
+
