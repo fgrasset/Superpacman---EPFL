@@ -18,7 +18,7 @@ Diamond : inscreases slightly your score
 
 
 -Level0
-	You will need to take the key to open the gate and access the enxt level
+	You will need to take the key to open the gate and access the next level
 
 -Level1
 	You'll need to collect all the diamonds to open the gates go the the next level
